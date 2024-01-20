@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "commit": "git-cz",
@@ -12,10 +12,17 @@
     "precommit": "lint-staged",
     "prepare": "husky install"
   },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
+  },
   "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "axios": "^1.6.5",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.22.4",
+    "zustand": "^4.5.0"
   },
   "lint-staged": {
     "./src/**": [
@@ -46,6 +53,7 @@
     "lint-staged": "^15.2.0",
     "postcss": "^8",
     "prettier": "^3.2.4",
+    "prisma": "^5.8.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
