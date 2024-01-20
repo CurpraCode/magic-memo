@@ -17,5 +17,5 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "no-console": "error",
   },
-  ignorePatterns: ["**/*.css", "schema.prisma"],
+  ignorePatterns: ["**/*.css", "schema.prisma", "favicon.ico"],
 };
