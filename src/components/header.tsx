@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
+import { AccountDropDown } from "./ui/accountdropdown";
 
-const Header = ({ session }: any) => {
+type HeaderProps = {
+  session: { user: { email: string } };
+};
+const Header = ({ session }: HeaderProps) => {
   return (
     <div className="absolute inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between p-6 lg:px-8">
@@ -13,16 +16,7 @@ const Header = ({ session }: any) => {
         </Link>
         <div>
           {session ? (
-            <p
-              onClick={() =>
-                signOut({
-                  callbackUrl: `${window.location.origin}/auth`,
-                })
-              }
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log out <span aria-hidden="true">&rarr;</span>
-            </p>
+            <AccountDropDown session={session} />
           ) : (
             <Link href="/auth" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
