@@ -32,7 +32,7 @@ export const Hero = () => {
             }}
           />
         </animated.div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-32 lg:py-36">
+        <div className="mx-auto max-w-2xl py-32 sm:py-32 lg:py-32">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="flex items-center rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               Introducing our magical memo {"  "}
@@ -47,10 +47,10 @@ export const Hero = () => {
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Create, Edit, Share Memos, Snippets easily
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-sm leading-8 text-gray-600 sm:text-lg ">
               With magic memo, create, update, and share everything easily. The only memo you will
               ever need.
             </p>
