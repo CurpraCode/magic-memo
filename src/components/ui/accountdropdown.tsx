@@ -8,7 +8,9 @@ import {
   InboxIcon,
   CursorArrowRaysIcon,
   UserIcon,
+  ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 interface Solution {
   name: string;
@@ -18,11 +20,12 @@ interface Solution {
   onClick?: () => void;
 }
 
-export const AccountDropDown = ({ session }: { session: { user: { email: string } } }) => {
+export const AccountDropDown = ({ session }: any) => {
   const userEmail = session?.user?.email;
   const solutions: Solution[] = [
     { name: "Account email", description: userEmail, href: "#", icon: InboxIcon },
     { name: "Create", description: "Sparkling memo", href: "#", icon: CursorArrowRaysIcon },
+    { name: "Memo", description: "View memos", href: "/memo", icon: ClipboardDocumentListIcon },
     {
       name: "Logout",
       description: "End session",
@@ -72,10 +75,10 @@ export const AccountDropDown = ({ session }: { session: { user: { email: string 
                         <span className="absolute inset-0" />
                       </div>
                     ) : (
-                      <a href={item.href} className="font-semibold text-gray-900">
+                      <Link href={item.href} className="font-semibold text-gray-900">
                         {item.name}
                         <span className="absolute inset-0" />
-                      </a>
+                      </Link>
                     )}
                     <p className="mt-1 text-gray-600">{item.description}</p>
                   </div>

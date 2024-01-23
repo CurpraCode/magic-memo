@@ -3,9 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AccountDropDown } from "./ui/accountdropdown";
+import { Session } from "next-auth";
 
 type HeaderProps = {
-  session: { user: { email: string } };
+  session?: Session | null | undefined;
 };
 const Header = ({ session }: HeaderProps) => {
   return (
