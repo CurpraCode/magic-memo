@@ -1,6 +1,6 @@
 "use client";
 
-import { ForwardRefExoticComponent, Fragment, SVGProps } from "react";
+import { Fragment } from "react";
 import { signOut } from "next-auth/react";
 import { Popover, Transition } from "@headlessui/react";
 import {
@@ -12,18 +12,18 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-interface Solution {
+interface LinkListType {
   name: string;
   description: string;
   href: string;
-  icon: ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, "ref">>;
+  icon: React.ElementType;
   onClick?: () => void;
 }
 
 export const AccountDropDown = ({ session }: any) => {
   const userEmail = session?.user?.email;
-  const solutions: Solution[] = [
-    { name: "Account email", description: userEmail, href: "#", icon: InboxIcon },
+  const linkList: LinkListType[] = [
+    { name: "Account email", description: userEmail, href: "/", icon: InboxIcon },
     { name: "Create", description: "Sparkling memo", href: "#", icon: CursorArrowRaysIcon },
     { name: "Memo", description: "View memos", href: "/memo", icon: ClipboardDocumentListIcon },
     {
@@ -57,7 +57,7 @@ export const AccountDropDown = ({ session }: any) => {
         <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-96 max-w-96 -translate-x-3/4 px-4 focus:border-0">
           <div className="w-80 max-w-80 flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-2">
-              {solutions.map((item) => (
+              {linkList.map((item) => (
                 <div
                   key={item.name}
                   className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
@@ -68,7 +68,7 @@ export const AccountDropDown = ({ session }: any) => {
                       aria-hidden="true"
                     />
                   </div>
-                  <div>
+                  <Popover.Button as="div">
                     {item.onClick ? (
                       <div onClick={item.onClick} className="font-semibold text-gray-900">
                         {item.name}
@@ -81,7 +81,7 @@ export const AccountDropDown = ({ session }: any) => {
                       </Link>
                     )}
                     <p className="mt-1 text-gray-600">{item.description}</p>
-                  </div>
+                  </Popover.Button>
                 </div>
               ))}
             </div>

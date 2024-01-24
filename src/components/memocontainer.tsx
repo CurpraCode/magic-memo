@@ -1,12 +1,15 @@
+"use client";
+
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Button from "./ui/button";
+import Memo from "./memo";
 
 const products = [
   {
     id: 1,
     name: "Basic Tee",
     href: "#",
-    imageSrc: "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageSrc: "Lorem ipsum",
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
@@ -64,7 +67,7 @@ export default function MemoContainer() {
             Create memo
           </Button>
         </div>
-
+        <Memo />
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <div key={product.id} className="group relative">
