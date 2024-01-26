@@ -56,7 +56,8 @@ model VerificationToken {
 }
 
 model Memo {
-  id      Int      @id @default(autoincrement())
+  id      String      @id @default(uuid())
   title   String
   content String
+  colorId String
 }

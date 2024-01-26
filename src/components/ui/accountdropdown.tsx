@@ -24,7 +24,7 @@ export const AccountDropDown = ({ session }: any) => {
   const userEmail = session?.user?.email;
   const linkList: LinkListType[] = [
     { name: "Account email", description: userEmail, href: "/", icon: InboxIcon },
-    { name: "Create", description: "Sparkling memo", href: "#", icon: CursorArrowRaysIcon },
+    { name: "Create", description: "Sparkling memo", href: "/create", icon: CursorArrowRaysIcon },
     { name: "Memo", description: "View memos", href: "/memo", icon: ClipboardDocumentListIcon },
     {
       name: "Logout",
