@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 const CreateMemo = () => {
   const [formData, setFormData] = useState({
+    id: "",
     title: "",
     content: "",
     colorId: "#3498db", // Default color
@@ -47,7 +48,16 @@ const CreateMemo = () => {
           </Button>
         </div>
 
-        <MemoForm onInputChange={handleInputChange} onColorChange={handleColorChange} />
+        <MemoForm
+          onInputChange={handleInputChange}
+          onColorChange={handleColorChange}
+          initialValues={{
+            id: "",
+            title: "",
+            content: "",
+            colorId: "",
+          }}
+        />
       </div>
     </div>
   );

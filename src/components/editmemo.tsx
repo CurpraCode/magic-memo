@@ -9,12 +9,17 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
 interface MemoData {
+  id: string;
   title: string;
   content: string;
   colorId: string;
 }
-const EditMemo = (memoData: any) => {
-  const [formData, setFormData] = useState<MemoData>(memoData);
+interface MemoDataProps {
+  memoData: MemoData | null;
+}
+
+const EditMemo = (memoData: MemoDataProps) => {
+  const [formData, setFormData] = useState<MemoDataProps>(memoData);
   const router = useRouter();
   const params = useParams();
 
@@ -50,8 +55,13 @@ const EditMemo = (memoData: any) => {
             Save memo
           </Button>
         </div>
-
-        <MemoForm onInputChange={handleInputChange} onColorChange={handleColorChange} />
+        {formData && (
+          <MemoForm
+            onInputChange={handleInputChange}
+            onColorChange={handleColorChange}
+            initialValues={formData.memoData || { id: "", title: "", content: "", colorId: "" }}
+          />
+        )}
       </div>
     </div>
   );

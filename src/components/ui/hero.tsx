@@ -51,7 +51,7 @@ export const Hero = () => {
               Create, Edit, Memos Snippets easily
             </h1>
             <p className="mt-6 text-sm leading-8 text-gray-600 sm:text-lg ">
-              With magic memo, create, update, and share everything easily. The only memo you will
+              With magic memo, create, view, and update everything easily. The only memo you will
               ever need.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">

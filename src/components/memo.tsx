@@ -23,8 +23,6 @@ export default function Memo({ open, setOpen, memo }: any) {
     from: { opacity: 0, transform: "translateY(20px)" },
     immediate: !animationTriggered,
   });
-  // eslint-disable-next-line no-console
-  console.log("Trail:", trail);
 
   return (
     <Transition.Root show={open} as={Fragment}>

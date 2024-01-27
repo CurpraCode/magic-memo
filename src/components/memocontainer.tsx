@@ -7,14 +7,18 @@ import { useState, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
 
 interface MemoTypeProp {
-  id: number;
+  id: string;
   title: string;
   content: string;
   colorId: string;
   isLoading?: boolean;
 }
 
-export default function MemoContainer({ memoViewData }: MemoTypeProp) {
+interface MemoContainerProps {
+  memoViewData: MemoTypeProp[];
+}
+
+export default function MemoContainer({ memoViewData }: MemoContainerProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState<MemoTypeProp[]>([]);
@@ -42,7 +46,7 @@ export default function MemoContainer({ memoViewData }: MemoTypeProp) {
 
   useEffect(() => {
     // Filter products based on the search term
-    const filtered = memoViewData.filter((memoD: { title: string }) =>
+    const filtered = memoViewData.filter((memoD) =>
       memoD.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilteredProducts(filtered);
