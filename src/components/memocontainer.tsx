@@ -4,60 +4,21 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 import Button from "./ui/button";
 import Memo from "./memo";
 import { useState, useEffect } from "react";
-// import Image from "next/image";
 import { animated, useSpring } from "@react-spring/web";
 
-interface Product {
+interface MemoTypeProp {
   id: number;
-  name: string;
-  price: string;
-  color: string;
-  isLoading?: boolean; // Add an optional isLoading property to the Product type
+  title: string;
+  content: string;
+  colorId: string;
+  isLoading?: boolean;
 }
 
-const productData = [
-  {
-    id: 1,
-    name: "Tasic Tee",
-    price:
-      "Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table.",
-    color: "#9494",
-  },
-  {
-    id: 1,
-    name: "Basic Tee",
-    price:
-      "Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table.",
-    color: "Black",
-  },
-  {
-    id: 1,
-    name: "Basic Tee",
-    price:
-      "Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table.",
-    color: "Black",
-  },
-  {
-    id: 1,
-    name: "Basic Tee",
-    price:
-      "Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table.",
-    color: "Black",
-  },
-  {
-    id: 1,
-    name: "Basic Tee",
-    price:
-      "Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table. Two each of gray, white, and black shirts arranged on table.",
-    color: "Black",
-  },
-];
-
-export default function MemoContainer() {
+export default function MemoContainer({ memoViewData }: MemoTypeProp) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [filteredProducts, setFilteredProducts] = useState<MemoTypeProp[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<MemoTypeProp | null>(null);
   const [isHovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => setHovered(true);
@@ -65,31 +26,32 @@ export default function MemoContainer() {
 
   const glowProps = useSpring({
     boxShadow: isHovered
-      ? `0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px ${productData[0].color}`
-      : `0 0 0px rgba(255, 255, 255, 0), 0 0 0px ${productData[0].color}`,
+      ? `0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px ${memoViewData[0].colorId}`
+      : `0 0 0px rgba(255, 255, 255, 0), 0 0 0px ${memoViewData[0].colorId}`,
   });
 
   useEffect(() => {
     const fetchData = async () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setIsLoading(false);
-      setFilteredProducts(productData); // Initially, display all products
+      setFilteredProducts(memoViewData); // Initially, display all products
     };
 
     fetchData();
-  }, []);
+  }, [memoViewData]);
 
   useEffect(() => {
     // Filter products based on the search term
-    const filtered = productData.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    const filtered = memoViewData.filter((memoD: { title: string }) =>
+      memoD.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilteredProducts(filtered);
-  }, [searchTerm]);
+  }, [memoViewData, searchTerm]);
+
   const LoadingSkeleton = () => <div className="animate-pulse bg-gray-300 h-80 rounded-md" />;
 
-  const handleClick = (product: Product) => {
-    setSelectedProduct(product);
+  const handleClick = (memo: MemoTypeProp) => {
+    setSelectedProduct(memo);
   };
 
   return (
@@ -135,17 +97,17 @@ export default function MemoContainer() {
           <Memo
             open={!!selectedProduct}
             setOpen={(open: any) => setSelectedProduct(open ? selectedProduct : null)}
-            product={selectedProduct}
+            memo={selectedProduct}
           />
         )}
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((memo) => (
             <div
-              key={product.id}
+              key={memo.id}
               className="group relative cursor-pointer"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleClick(product)}
+              onClick={() => handleClick(memo)}
             >
               {isLoading ? (
                 <LoadingSkeleton />
@@ -156,7 +118,7 @@ export default function MemoContainer() {
                     style={{ opacity: isHovered ? 0.75 : 1, ...glowProps }}
                   >
                     <p className="text-white text-4xl font-bold absolute inset-0 flex items-center justify-center">
-                      {product.name}
+                      {memo.title}
                     </p>
                   </animated.div>
                 </>

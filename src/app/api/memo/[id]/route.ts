@@ -24,7 +24,6 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     const store = await prisma.memo.updateMany({
       where: {
         id: params.id,
-        user,
       },
       data: {
         title,

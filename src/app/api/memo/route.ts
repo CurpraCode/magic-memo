@@ -39,11 +39,7 @@ export async function GET() {
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const memos = await prisma.memo.findMany({
-      where: {
-        user,
-      },
-    });
+    const memos = await prisma.memo.findMany();
 
     return NextResponse.json(memos);
   } catch (error) {

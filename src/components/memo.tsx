@@ -4,7 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useTrail, animated } from "@react-spring/web";
 import Button from "./ui/button";
 
-export default function Memo({ open, setOpen, product }: any) {
+export default function Memo({ open, setOpen, memo }: any) {
   // const [open, setOpen] = useState(false);
   const shouldShowDialog = true; // Set this to your actual condition
   const [animationTriggered, setAnimationTriggered] = useState(false);
@@ -15,7 +15,7 @@ export default function Memo({ open, setOpen, product }: any) {
     }
   }, [animationTriggered, setOpen, shouldShowDialog]);
 
-  const textItems = product?.price?.split(". ") || []; // Splitting the text into sentences
+  const textItems = memo?.content?.split(". ") || []; // Splitting the text into sentences
 
   const trail = useTrail(textItems.length, {
     opacity: 1,
@@ -69,7 +69,7 @@ export default function Memo({ open, setOpen, product }: any) {
                         style={trail[0]}
                         className="text-2xl leading-8 font-bold text-center text-gray-900 sm:pr-12"
                       >
-                        {product.name}
+                        {memo.title}
                       </animated.h2>
 
                       <section aria-labelledby="information-heading" className="mt-2">
@@ -97,7 +97,7 @@ export default function Memo({ open, setOpen, product }: any) {
 
                         <form>
                           <Button
-                            href={`/memo/edit/${product.id}`}
+                            href={`/memo/edit/${memo.id}`}
                             className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             Edit Memo
