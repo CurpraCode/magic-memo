@@ -140,7 +140,7 @@ This will start the application in watch mode, so any changes you make to the co
 
 ## Docker
 
-This application has uses docker and it setup, please follow the [README] (./README.Docker.md) to see how to use and run it.
+This application has uses docker and it setup, please follow the [README](./README.Docker.md) to see how to use and run it.
 
 ## Usage
 
