@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MemoForm from "./ui/memeform";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Button from "./ui/button";
@@ -15,25 +15,37 @@ interface MemoData {
   colorId: string;
 }
 interface MemoDataProps {
-  memoData: MemoData | null;
+  memoData: MemoData;
 }
 
 const EditMemo = (memoData: MemoDataProps) => {
-  const [formData, setFormData] = useState<MemoDataProps>(memoData);
+  const [formData, setFormData] = useState<MemoDataProps>({
+    memoData: { id: "", title: "", content: "", colorId: "" },
+  });
   const router = useRouter();
   const params = useParams();
 
+  useEffect(() => {
+    setFormData(memoData);
+  }, [memoData]);
+
   const handleInputChange = (field: "title" | "content", value: string) => {
-    setFormData((prevData) => ({ ...prevData, [field]: value }));
+    setFormData((prevData) => ({
+      ...prevData,
+      memoData: { ...prevData.memoData, [field]: value },
+    }));
   };
 
   const handleColorChange = (color: string) => {
-    setFormData((prevData) => ({ ...prevData, colorId: color }));
+    setFormData((prevData) => ({
+      ...prevData,
+      memoData: { ...prevData.memoData, colorId: color },
+    }));
   };
 
   const handleSubmit = async () => {
     try {
-      await axios.patch(`/api/memo/${params.id}`, formData);
+      await axios.patch(`/api/memo/${params.id}`, formData.memoData);
       router.refresh();
       toast.success("Memo updated");
       router.push("/memo");

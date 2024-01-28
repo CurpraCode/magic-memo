@@ -15,7 +15,7 @@ interface MemoFormProps {
 }
 
 const MemoForm: React.FC<MemoFormProps> = ({ onInputChange, onColorChange, initialValues }) => {
-  const colors = ["#3498db", "#e74c3c", "#27ae60", "#f39c12", "#8e44ad", "#ffffff"];
+  const colors = ["#3498db", "#e74c3c", "#27ae60", "#f39c12", "#8e44ad"];
 
   return (
     <div>
@@ -23,8 +23,8 @@ const MemoForm: React.FC<MemoFormProps> = ({ onInputChange, onColorChange, initi
         <input
           type="text"
           placeholder="Title"
-          value={initialValues.title || ""}
-          onChange={(e) => onInputChange("title", e.target.value)}
+          value={initialValues.title}
+          onChange={(event) => onInputChange("title", event.target.value)}
           className="text-black text-2xl font-bold border-0 py-2 px-4 w-2/3 focus:outline-none"
         />
 

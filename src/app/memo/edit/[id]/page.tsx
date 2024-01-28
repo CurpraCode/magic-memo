@@ -14,7 +14,7 @@ export default async function Home({ params }: { params: { id: string } }) {
   }
   return (
     <div>
-      <EditMemo memoData={data} />
+      <EditMemo memoData={data || { id: "", title: "", content: "", colorId: "" }} />
     </div>
   );
 }

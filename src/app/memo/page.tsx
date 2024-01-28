@@ -10,5 +10,9 @@ export default async function Home() {
   if (!session) {
     return redirect("/auth");
   }
-  return <div>{session ? <MemoContainer memoViewData={data} /> : null}</div>;
+  return (
+    <div>
+      <MemoContainer memoViewData={data} />
+    </div>
+  );
 }

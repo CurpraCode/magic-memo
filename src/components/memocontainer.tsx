@@ -4,7 +4,6 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 import Button from "./ui/button";
 import Memo from "./memo";
 import { useState, useEffect } from "react";
-import { animated, useSpring } from "@react-spring/web";
 
 interface MemoTypeProp {
   id: string;
@@ -23,29 +22,18 @@ export default function MemoContainer({ memoViewData }: MemoContainerProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState<MemoTypeProp[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<MemoTypeProp | null>(null);
-  const [isHovered, setHovered] = useState(false);
-
-  const handleMouseEnter = () => setHovered(true);
-  const handleMouseLeave = () => setHovered(false);
-
-  const glowProps = useSpring({
-    boxShadow: isHovered
-      ? `0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px ${memoViewData[0].colorId}`
-      : `0 0 0px rgba(255, 255, 255, 0), 0 0 0px ${memoViewData[0].colorId}`,
-  });
 
   useEffect(() => {
     const fetchData = async () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setIsLoading(false);
-      setFilteredProducts(memoViewData); // Initially, display all products
+      setFilteredProducts(memoViewData);
     };
 
     fetchData();
   }, [memoViewData]);
 
   useEffect(() => {
-    // Filter products based on the search term
     const filtered = memoViewData.filter((memoD) =>
       memoD.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
@@ -71,7 +59,6 @@ export default function MemoContainer({ memoViewData }: MemoContainerProps) {
             Create memo
           </Button>
         </div>
-        {/* <Memo /> */}
         <div className="flex my-8 m-auto items-center justify-between">
           <div className="relative">
             <input
@@ -109,22 +96,23 @@ export default function MemoContainer({ memoViewData }: MemoContainerProps) {
             <div
               key={memo.id}
               className="group relative cursor-pointer"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
               onClick={() => handleClick(memo)}
             >
               {isLoading ? (
                 <LoadingSkeleton />
               ) : (
                 <>
-                  <animated.div
+                  <div
                     className="aspect-h-1 aspect-w-1 w-full overflow-hidden backdrop-filter backdrop-blur-16 backdrop-saturate-180 bg-[rgba(248, 248, 248, 0.75)] border-1 border-[rgba(255,255,255,0.125)] rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
-                    style={{ opacity: isHovered ? 0.75 : 1, ...glowProps }}
+                    style={{
+                      background: `linear-gradient(to right, ${memo.colorId} 0%, red 100%)`,
+                      transition: " background 0.3s ease",
+                    }}
                   >
-                    <p className="text-white text-4xl font-bold absolute inset-0 flex items-center justify-center">
+                    <p className="text-white text-2xl py-4 text-center font-bold absolute inset-0 flex items-center justify-center">
                       {memo.title}
                     </p>
-                  </animated.div>
+                  </div>
                 </>
               )}
             </div>

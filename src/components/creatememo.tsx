@@ -12,7 +12,7 @@ const CreateMemo = () => {
     id: "",
     title: "",
     content: "",
-    colorId: "#3498db", // Default color
+    colorId: "#3498db",
   });
   const router = useRouter();
   const handleInputChange = (field: "title" | "content", value: string) => {
@@ -51,12 +51,7 @@ const CreateMemo = () => {
         <MemoForm
           onInputChange={handleInputChange}
           onColorChange={handleColorChange}
-          initialValues={{
-            id: "",
-            title: "",
-            content: "",
-            colorId: "",
-          }}
+          initialValues={formData}
         />
       </div>
     </div>

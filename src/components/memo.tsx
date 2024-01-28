@@ -1,12 +1,10 @@
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useTrail, animated } from "@react-spring/web";
 import Button from "./ui/button";
 
 export default function Memo({ open, setOpen, memo }: any) {
-  // const [open, setOpen] = useState(false);
-  const shouldShowDialog = true; // Set this to your actual condition
+  const shouldShowDialog = true;
   const [animationTriggered, setAnimationTriggered] = useState(false);
   useEffect(() => {
     if (shouldShowDialog && !animationTriggered) {
@@ -52,15 +50,6 @@ export default function Memo({ open, setOpen, memo }: any) {
             >
               <Dialog.Panel className="flex max-w-lg my-8 transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
                 <div className="relative flex rounded-lg items-center overflow-hidden bg-white px-4 pb-8 pt-4 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                  <button
-                    type="button"
-                    className="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
-                    onClick={() => setOpen(false)}
-                  >
-                    <span className="sr-only">Close</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-
                   <div className="w-full items-center text0black-900  bg-black-800 gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                     <div className="sm:col-span-8 lg:col-span-7">
                       <animated.h2

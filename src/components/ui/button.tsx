@@ -62,12 +62,7 @@ const Button: FC<ButtonProps> = ({
           disabled={disable || error !== undefined}
           style={{ cursor: disable || error !== undefined ? "not-allowed" : "pointer" }}
         >
-          {loading && (
-            <span className="animate-spin mr-2">
-              {/* You can replace this with your loading spinner component */}
-              &#9696;
-            </span>
-          )}
+          {loading && <span className="animate-spin mr-2">&#9696;</span>}
 
           <span>{children}</span>
           {icon && <span>{icon}</span>}
