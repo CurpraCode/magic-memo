@@ -30,10 +30,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@codaworks/react-glow/tailwind"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/aspect-ratio")],
 };
 export default config;
