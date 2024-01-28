@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/utils/auth";
 import Header from "@/components/header";
 import PageTransitionEffect from "@/provider/pageanimation";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
+          <Toaster />
           <Header session={session} />
           <PageTransitionEffect>{children}</PageTransitionEffect>
         </Provider>
