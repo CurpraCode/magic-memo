@@ -5,6 +5,7 @@ import Provider from "@/provider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/utils/auth";
 import Header from "@/components/header";
+import PageTransitionEffect from "@/provider/pageanimation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +20,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Provider>
           <Header session={session} />
-          {children}
+          <PageTransitionEffect>{children}</PageTransitionEffect>
         </Provider>
       </body>
     </html>

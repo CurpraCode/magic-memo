@@ -54,3 +54,10 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Memo {
+  id      String      @id @default(uuid())
+  title   String
+  content String
+  colorId String
+}

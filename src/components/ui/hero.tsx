@@ -48,15 +48,15 @@ export const Hero = () => {
           </div>
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Create, Edit, Share Memos, Snippets easily
+              Create, Edit, Memos Snippets easily
             </h1>
             <p className="mt-6 text-sm leading-8 text-gray-600 sm:text-lg ">
-              With magic memo, create, update, and share everything easily. The only memo you will
+              With magic memo, create, view, and update everything easily. The only memo you will
               ever need.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Button
-                href="/auth"
+                href="/create"
                 className="rounded-3xl bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 icon={<ArrowRightIcon color="white" className="h-6 w-6" />}
               >
