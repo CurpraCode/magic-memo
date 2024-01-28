@@ -25,6 +25,7 @@ Visit - [Magic Memo](https://magic-memo.vercel.app/)
     - [Formatting](#formatting)
     - [Git Hooks](#git-hooks)
   - [Running the App](#running-the-app)
+  - [Docker](#docker)
   - [Usage](#usage)
   - [API Endpoints](#api-endpoints)
   - [Author](#author)
@@ -136,6 +137,10 @@ yarn dev
 ```
 
 This will start the application in watch mode, so any changes you make to the code will be automatically detected and the application will be recompiled.
+
+## Docker
+
+This application has uses docker and it setup, please follow the [README] (./README.Docker.md) to see how to use and run it.
 
 ## Usage
 
